@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { UserService } from "../service/user.service";
-import { Users } from "../model/users.model";
+import { User } from "../model/users.model";
 const userRouter = new Hono()
 
 const userService = new UserService()
@@ -11,13 +11,13 @@ userRouter.get('/', async (context) => {
 })
 
 userRouter.post('/', async (context) => {
-    const user: Users = await context.req.json()
+    const user: User = await context.req.json()
     const result = await userService.createOne(user)
     return context.json(result)
 })
 
 userRouter.post('/login', async (c) => {
-    const data: Users = await c.req.json()
+    const data: User = await c.req.json()
     return c.json(await userService.logUser(data))
 })
 
@@ -28,7 +28,7 @@ userRouter.get('/:id', async (c) => {
 
 userRouter.patch('/:id', async (c) => {
     const id = c.req.param('id')
-    const data: Users = await c.req.json()
+    const data: User = await c.req.json()
     return c.json(await userService.updateOne(id, data))
 })
 

@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { AuthService } from "../service/auth.service";
-import { Users } from "../model/users.model";
+import { User } from "../model/users.model";
 import { authMiddleware } from "../middleware/auth.middleware";
 
 const authRouter = new Hono()
@@ -13,13 +13,13 @@ authRouter.get('/profile', authMiddleware, async (c) => {
 })
 
 authRouter.post('/login', async (c) => {
-    const data: Users = await c.req.json()
+    const data: User = await c.req.json()
     const result = await authService.login(data)
     return c.json(result)
 })
 
 authRouter.post('/register', async (c) => {
-    const data: Users = await c.req.json()
+    const data: User = await c.req.json()
     const result = await authService.register(data)
     return c.json(result)
 })

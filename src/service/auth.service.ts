@@ -1,9 +1,9 @@
-import UserModel, { Users } from "../model/users.model";
+import UserModel, { User } from "../model/users.model";
 import { comparePassword, generateToken, hashPassword } from "../middleware/auth.middleware";
 
 
 export class AuthService {
-    async register(data: Users) {
+    async register(data: User) {
         try {
             if(!data.username || !data.password) {
                 return { message: 'all fields are required' }
@@ -26,7 +26,7 @@ export class AuthService {
         }
     }
 
-    async login(data: Users) {
+    async login(data: User) {
         try {
             if(!data.username || !data.password) {
                 return { message: 'all fields are required' }

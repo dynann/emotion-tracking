@@ -1,11 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
-export interface Users {
+export interface User {
     password: string,
     username: string,
 }
 
-const User = new Schema<Users>({
+const User = new Schema<User>({
     password: { type: String, required: true, select: false },
     username: { type: String, required: true, unique: true }
 }, {timestamps: true})

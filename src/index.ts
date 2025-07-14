@@ -5,6 +5,9 @@ import userRouter from './router/users.router'
 import { cors } from 'hono/cors'
 import authRouter from './router/auth.router'
 import { JWTPayload } from 'hono/utils/jwt/types'
+import { webhookCallback } from 'grammy'
+import botRouter, { bot } from './router/bot.router'
+import pointRouter from './router/point.router'
 
 connectToDB()
 
@@ -21,6 +24,9 @@ app.use('*', cors({
 
 app.route('/users', userRouter)
 app.route('/auth', authRouter)
+app.route('/bot', botRouter)
+app.route('/point', pointRouter)
+app.use('/', webhookCallback(bot, 'hono'),)
 
 serve({
   fetch: app.fetch,

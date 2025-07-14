@@ -1,4 +1,4 @@
-import UserModel, { Users } from "../model/users.model";
+import UserModel, { User } from "../model/users.model";
 import * as bcrypt from "bcrypt"
 export class UserService {
 
@@ -34,7 +34,7 @@ export class UserService {
         }
     }
 
-    async createOne(user: Users) {
+    async createOne(user: User) {
         try {
             if(!user.password || !user.username) {
                 const missingValue = !user.password ? "password required" : "username required"
@@ -57,7 +57,7 @@ export class UserService {
         }
     }
 
-    async updateOne(id: string, data: Users) {
+    async updateOne(id: string, data: User) {
         try {
             const user = await UserModel.findById(id)
             if(!user){
@@ -128,7 +128,7 @@ export class UserService {
         }
     }
     
-    async logUser(data: Users) {
+    async logUser(data: User) {
 
         try {
 
