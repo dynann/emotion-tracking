@@ -3,7 +3,10 @@ import { Hono } from 'hono'
 import { BotService } from '../service/bot.service'
 import dayjs from 'dayjs'
 import { PointService } from '../service/point.service'
-export const bot = new Bot("8093275292:AAEpTUYiyzGhTwrde_jhNLATP3Dki2vU8Iw")
+import * as dotenv from 'dotenv'
+dotenv.config()
+const bot_token = process.env.BOT_TOKEN
+export const bot = new Bot(bot_token!)
 const botRouter = new Hono()
 const botService = new BotService()
 const hour = dayjs().hour() + 7
